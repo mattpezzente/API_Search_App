@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css?family=ABeeZee|Crete+Round");
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
   margin: 0;
   padding: 0;
@@ -35,12 +36,12 @@ table {
 
 /* Variables */
 /* Mixin's + Placeholders */
-#nav-header {
+#nav-header, #nav-header h1, #nav-header h1::before {
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat; }
 
-section, #nav-header, #search-section {
+section, #nav-header, #search-section, footer {
   margin-left: auto;
   margin-right: auto; }
 
@@ -49,50 +50,85 @@ section, #nav-header, #search-section {
   content: '';
   clear: both; }
 
+#search-results p {
+  padding: 0.4rem;
+  width: 4rem;
+  border-radius: 0.2rem;
+  font-family: sans-serif;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 3px #000;
+  box-shadow: 1px 1px 3px #000; }
+
 /* Globals */
 h1 {
-  font-size: 2rem; }
+  font-size: 1.75rem; }
 
 h2 {
-  font-size: 1.5rem; }
-
-h3 {
   font-size: 1.25rem; }
 
+h3 {
+  font-size: 1rem; }
+
 h4 {
-  font-size: 0.75rem; }
+  font-size: 0.5rem; }
 
-nav {
-  font-size: 1.2rem; }
+h1,
+h2,
+h3,
+h4,
+a,
+label,
+input {
+  font-family: "Crete Round", serif;
+  text-decoration: none; }
 
-body {
-  background-color: #222; }
-
-section {
-  background-color: #444;
-  margin-bottom: 2rem;
-  padding: 1rem;
-  max-width: 1000px; }
+p {
+  font-family: "ABeeZee", sans-serif; }
 
 p, h1, h2, h3, h4, a, label {
   color: #eee; }
 
+body {
+  background-color: #111; }
+
+section {
+  background-color: #333;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  max-width: 1000px; }
+
 /* Navigation */
 #nav-header {
-  background-image: url("/assets/concert-photo.jpg");
+  background-image: url("https://www.zone-actu.com/wp-content/uploads/f505f5040274b97cd5114f9ff3ab8b99.jpg");
   margin-bottom: 0;
   max-width: 1000px; }
   #nav-header nav {
-    background: rgba(0, 0, 0, 0.5);
-    background: -webkit-linear-gradient(black, rgba(0, 0, 0, 0.5));
-    background: linear-gradient(black, rgba(0, 0, 0, 0.5));
+    background: transparent;
+    background: -webkit-linear-gradient(black 70%, transparent);
+    background: linear-gradient(black 70%, transparent);
     padding: 1rem; }
   #nav-header h1 {
+    display: table;
     float: left; }
+    #nav-header h1 a {
+      display: table-cell;
+      vertical-align: middle;
+      text-decoration: none; }
+  #nav-header h1::before {
+    background-size: contain;
+    background-image: url("/assets/pokemon-search-logo.png");
+    content: "";
+    float: left;
+    height: 3rem;
+    width: 4rem; }
+  #nav-header ul {
+    display: block;
+    float: right; }
   #nav-header li {
-    display: inline-block;
-    float: right;
-    margin-right: 1rem; }
+    float: left;
+    margin: 0.5rem;
+    font-size: 1.2rem; }
 
 /* Search Section */
 #search-section {
@@ -103,11 +139,13 @@ p, h1, h2, h3, h4, a, label {
   #search-section form {
     display: table-cell;
     vertical-align: middle;
-    max-width: 350px; }
+    max-width: 400px; }
   #search-section label {
     display: inline-block;
-    background-color: #222;
+    background-color: #111;
     padding: 0.5rem; }
+    #search-section label span {
+      font-size: 0.75rem; }
   #search-section input {
     display: block;
     padding: 0.5rem;
@@ -128,21 +166,113 @@ p, h1, h2, h3, h4, a, label {
     border: none; }
 
 /* Search Results Section */
-section h2 {
+#search-results h2 {
+  order: 1;
   margin-bottom: 1rem; }
 
-.search-results {
+#search-results ul {
   display: flex;
   flex-flow: row;
   justify-content: space-between;
-  flex-wrap: wrap; }
-  .search-results li {
-    margin-bottom: 2rem;
-    background: #222;
-    width: calc(100%/4 - 2rem); }
-  .search-results img {
-    max-width: 100%; }
-  .search-results h3 {
-    padding: 0.5rem; }
-  .search-results h4 {
-    padding: 0.5rem; }
+  flex-wrap: wrap;
+  align-items: center; }
+
+#search-results li {
+  order: 2;
+  text-align: center;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background: #111;
+  width: calc(100%/4 - 2rem); }
+
+#search-results img {
+  max-width: 100%; }
+
+#search-results h3 {
+  padding: 0.5rem; }
+
+#search-results p {
+  display: inline-block;
+  margin: 0 0.5rem; }
+
+.type-normal {
+  background: #949562;
+  border: 1px solid #66663e; }
+
+.type-fire {
+  background: #de5d1a;
+  border: 1px solid #a33f0d; }
+
+.type-water {
+  background: #355be8;
+  border: 1px solid #1238dc; }
+
+.type-electric {
+  background: #f0bc19;
+  border: 1px solid #b38b0c; }
+
+.type-grass {
+  background: #56aa31;
+  border: 1px solid #3b7921; }
+
+.type-ice {
+  background: #6ec4c3;
+  border: 1px solid #3aa8a7; }
+
+.type-fighting {
+  background: #a61c1d;
+  border: 1px solid #6d1515; }
+
+.type-poison {
+  background: #722173;
+  border: 1px solid #521a53; }
+
+.type-ground {
+  background: #d2aa42;
+  border: 1px solid #99741b; }
+
+.type-flying {
+  background: #9074de;
+  border: 1px solid #634ba7; }
+
+.type-psychic {
+  background: #f20052;
+  border: 1px solid #c90035; }
+
+.type-bug {
+  background: #889a18;
+  border: 1px solid #4e5910; }
+
+.type-rock {
+  background: #968127;
+  border: 1px solid #61541b; }
+
+.type-ghost {
+  background: #553d7c;
+  border: 1px solid #312447; }
+
+.type-dragon {
+  background: #4a00f1;
+  border: 1px solid #66663e; }
+
+.type-dark {
+  background: #433229;
+  border: 1px solid #281f1a; }
+
+.type-steel {
+  background: #9695b7;
+  border: 1px solid #666596; }
+
+.type-fairy {
+  background: #da66dc;
+  border: 1px solid #c925cb; }
+
+/* Footer */
+footer {
+  display: table;
+  text-align: center;
+  height: 5rem;
+  max-width: 1000px; }
+  footer p {
+    display: table-cell;
+    vertical-align: middle; }
