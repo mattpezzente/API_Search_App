@@ -1,2 +1,148 @@
-p {
-  color: #000; }
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline; }
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+  display: block; }
+
+body {
+  line-height: 1; }
+
+ol, ul {
+  list-style: none; }
+
+blockquote {
+  quotes: none; }
+
+blockquote:before, blockquote:after {
+  content: '';
+  content: none; }
+
+q:before, q:after {
+  content: '';
+  content: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+* {
+  box-sizing: border-box; }
+
+/* Variables */
+/* Mixin's + Placeholders */
+#nav-header {
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat; }
+
+section, #nav-header, #search-section {
+  margin-left: auto;
+  margin-right: auto; }
+
+#nav-header nav::after, #nav-header::after, #search-section form::after, #search-section::after {
+  display: block;
+  content: '';
+  clear: both; }
+
+/* Globals */
+h1 {
+  font-size: 2rem; }
+
+h2 {
+  font-size: 1.5rem; }
+
+h3 {
+  font-size: 1.25rem; }
+
+h4 {
+  font-size: 0.75rem; }
+
+nav {
+  font-size: 1.2rem; }
+
+body {
+  background-color: #222; }
+
+section {
+  background-color: #444;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  max-width: 1000px; }
+
+p, h1, h2, h3, h4, a, label {
+  color: #eee; }
+
+/* Navigation */
+#nav-header {
+  background-image: url("/assets/concert-photo.jpg");
+  margin-bottom: 0;
+  max-width: 1000px; }
+  #nav-header nav {
+    background: rgba(0, 0, 0, 0.5);
+    background: -webkit-linear-gradient(black, rgba(0, 0, 0, 0.5));
+    background: linear-gradient(black, rgba(0, 0, 0, 0.5));
+    padding: 1rem; }
+  #nav-header h1 {
+    float: left; }
+  #nav-header li {
+    display: inline-block;
+    float: right;
+    margin-right: 1rem; }
+
+/* Search Section */
+#search-section {
+  display: table;
+  background: none;
+  padding: 1rem;
+  height: 12.5rem; }
+  #search-section form {
+    display: table-cell;
+    vertical-align: middle;
+    max-width: 350px; }
+  #search-section label {
+    display: inline-block;
+    background-color: #222;
+    padding: 0.5rem; }
+  #search-section input {
+    display: block;
+    padding: 0.5rem;
+    float: left;
+    width: 85%;
+    height: 3rem;
+    font-size: 1.5rem;
+    border: none; }
+  #search-section button {
+    float: right;
+    background: url("/assets/search.png"), white;
+    padding: 0;
+    width: 15%;
+    height: 3rem;
+    background-size: 70%;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none; }
+
+/* Search Results Section */
+section h2 {
+  margin-bottom: 1rem; }
+
+.search-results {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+  flex-wrap: wrap; }
+  .search-results li {
+    margin-bottom: 2rem;
+    background: #222;
+    width: calc(100%/4 - 2rem); }
+  .search-results img {
+    max-width: 100%; }
+  .search-results h3 {
+    padding: 0.5rem; }
+  .search-results h4 {
+    padding: 0.5rem; }

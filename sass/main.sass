@@ -1,4 +1,173 @@
-$primary-color: #000
+@import utils/_reset
 
-p
-    color: $primary-color
+/* Variables */
+
+$primary-color: #222
+$secondary-color: #444
+$accent-color: #c12410
+
+$section-margin: 2rem
+$section-padding: 1rem
+$container-width: 1000px
+
+$header-base-font-size: 2rem
+$text-color: #eee
+
+/* Mixin's + Placeholders */
+
+@mixin linear-gradient($color-starts, $color-stops)
+  background: nth(nth($color-stops,1), 1)
+  background: -webkit-linear-gradient($color-starts, $color-stops)
+  background: linear-gradient($color-starts, $color-stops)
+
+%background-format
+  background-position: center
+  background-size: cover
+  background-repeat: no-repeat
+
+%center-object
+    margin-left: auto
+    margin-right: auto
+
+%clear-fix
+  display: block
+  content: ''
+  clear: both
+
+/* Globals */
+
+h1
+  font-size: $header-base-font-size
+
+h2
+  font-size: $header-base-font-size - .5rem
+
+h3
+  font-size: $header-base-font-size - .75rem
+
+h4
+  font-size: $header-base-font-size - 1.25rem
+
+nav
+  li
+  font-size: 1.2rem
+
+body
+    background-color: $primary-color
+
+section
+  @extend %center-object
+  background-color: $secondary-color
+  margin-bottom: $section-margin
+  padding: $section-padding
+  max-width: $container-width
+
+p, h1, h2, h3, h4, a, label
+  color: $text-color
+
+
+/* Navigation */
+
+#nav-header
+  @extend %background-format, %center-object
+  background-image: url('/assets/concert-photo.jpg')
+  margin-bottom: 0
+  max-width: $container-width
+
+  nav
+    @include linear-gradient(rgba(0,0,0,1), rgba(0,0,0,0.5))
+    padding: $section-padding
+
+  nav::after
+    @extend %clear-fix
+
+  h1
+    float: left
+
+  li
+    display: inline-block
+    float: right
+    margin-right: 1rem
+
+  &::after
+    @extend %clear-fix  
+
+/* Search Section */
+
+#search-section
+  @extend %center-object
+  display: table
+  background: none
+  padding: $section-padding
+  height: 12.5rem
+
+  form
+    display: table-cell
+    vertical-align: middle
+    max-width: 350px
+
+  form::after
+    @extend %clear-fix
+
+  label
+    display: inline-block
+    background-color: $primary-color
+    padding: 0.5rem
+
+  input
+    display: block
+    padding: 0.5rem
+    float: left
+    width: 85%
+    height: 3rem
+    font-size: 1.5rem
+    border: none
+
+  button
+    float: right
+    background: url('/assets/search.png'), white
+    padding: 0
+    width: 15%
+    height: 3rem
+    background-size: 70%
+    background-repeat: no-repeat
+    background-position: center
+    border: none
+
+  &::after
+    @extend %clear-fix
+
+/* Search Results Section */
+
+section 
+  
+  h2
+    margin-bottom: 1rem
+
+.search-results
+  display: flex
+  flex-flow: row
+  justify-content: space-between
+  flex-wrap: wrap
+
+  li
+    margin-bottom: 2rem
+    background: $primary-color
+    width: calc(100%/4 - 2rem)
+
+  img
+    max-width: 100%
+
+  h3
+    padding: 0.5rem
+
+  h4
+    padding: 0.5rem
+
+    
+
+
+
+
+
+
