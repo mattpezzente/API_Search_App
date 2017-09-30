@@ -36,7 +36,7 @@ table {
 
 /* Variables */
 /* Mixin's + Placeholders */
-#nav-header, #nav-header h1, #nav-header h1::before {
+body, #nav-header, #nav-header h1, #nav-header h1::before {
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat; }
@@ -90,7 +90,8 @@ p, h1, h2, h3, h4, a, label {
   color: #eee; }
 
 body {
-  background-color: #111; }
+  background: url("/assets/dark-background.jpg");
+  background-size: 300%; }
 
 section {
   background-color: #333;
@@ -110,7 +111,8 @@ section {
     padding: 1rem; }
   #nav-header h1 {
     display: table;
-    float: left; }
+    float: left;
+    margin: 0.75rem; }
     #nav-header h1 a {
       display: table-cell;
       vertical-align: middle;
@@ -127,7 +129,7 @@ section {
     float: right; }
   #nav-header li {
     float: left;
-    margin: 0.5rem;
+    margin: 0.75rem;
     font-size: 1.2rem; }
 
 /* Search Section */
@@ -148,22 +150,24 @@ section {
       font-size: 0.75rem; }
   #search-section input {
     display: block;
-    padding: 0.5rem;
     float: left;
+    padding: 0.5rem;
     width: 85%;
     height: 3rem;
     font-size: 1.5rem;
-    border: none; }
+    border: none;
+    z-index: 10; }
   #search-section button {
     float: right;
     background: url("/assets/search.png"), white;
     padding: 0;
     width: 15%;
     height: 3rem;
-    background-size: 70%;
+    background-size: 60%;
     background-repeat: no-repeat;
     background-position: center;
-    border: none; }
+    border: none;
+    cursor: pointer; }
 
 /* Search Results Section */
 #search-results h2 {

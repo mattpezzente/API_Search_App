@@ -79,7 +79,9 @@ p, h1, h2, h3, h4, a, label
   color: $text-color
 
 body
-    background-color: $primary-color
+  @extend %background-format 
+  background: url('/assets/dark-background.jpg')
+  background-size: 300%
 
 section
   @extend %center-object
@@ -109,6 +111,7 @@ section
     @extend %background-format
     display: table
     float: left
+    margin: 0.75rem
     
     a  
       display: table-cell
@@ -130,7 +133,7 @@ section
     
   li
     float: left
-    margin: 0.5rem
+    margin: 0.75rem
     font-size: 1.2rem
 
   &::after
@@ -163,12 +166,13 @@ section
 
   input
     display: block
-    padding: 0.5rem
     float: left
+    padding: 0.5rem
     width: 85%
     height: 3rem
     font-size: 1.5rem
     border: none
+    z-index: 10
 
   button
     float: right
@@ -176,10 +180,11 @@ section
     padding: 0
     width: 15%
     height: 3rem
-    background-size: 70%
+    background-size: 60%
     background-repeat: no-repeat
     background-position: center
     border: none
+    cursor: pointer
 
   &::after
     @extend %clear-fix
