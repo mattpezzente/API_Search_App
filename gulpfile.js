@@ -22,7 +22,7 @@ gulp.task('watch', () => {
 });
 
 gulp.task('css', () => {
-  return gulp.src('./sass/*.sass')
+  return gulp.src('./sass/**/*.sass')
     .pipe(sass().on('error', function(err) {
       console.error(err.message);
       browserSync.notify(err.message, 3000); // Display error in the browser

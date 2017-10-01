@@ -1,0 +1,52 @@
+$primary-color: #111
+$secondary-color: #333
+$accent-color: #c12410
+
+$section-margin: 2rem
+$section-padding: 1rem
+$container-width: 1000px
+
+$header-base-font-size: 1.75rem
+$text-color: #eee
+$header-font: 'Crete Round', serif;
+$content-font: 'ABeeZee', sans-serif
+
+h1
+  font-size: $header-base-font-size
+
+h2
+  font-size: $header-base-font-size - .5rem
+
+h3
+  font-size: $header-base-font-size - .75rem
+
+h4
+  font-size: $header-base-font-size - 1.25rem
+
+h1,
+h2,
+h3,
+h4,
+a,
+label,
+input
+  font-family: $header-font
+  text-decoration: none
+
+p
+  font-family: $content-font
+
+p, h1, h2, h3, h4, a, label
+  color: $text-color
+
+body
+  @extend %background-format 
+  background: url('/assets/dark-background.jpg')
+  background-size: 300%
+
+section
+  @extend %center-object
+  background-color: $secondary-color
+  margin-bottom: $section-margin
+  padding: $section-padding
+  max-width: $container-width

@@ -1,4 +1,4 @@
-const cors = 'http://cors-proxy.htmldriven.com/?url=';
+const cors = 'https://cors-anywhere.herokuapp.com/';
 const api = 'http://pokeapi.co/api/v2/';  
 var limit = 12;
 var temp = '';
@@ -30,12 +30,12 @@ function PokeSearch(e) {
   let txtBox = document.querySelector('.txt-search');
   let txtValue = txtBox.value;
   pokeArray = 0;
-  ulResults.innerHTML = '';
 
   fetch(cors+api+'type/'+txtValue)
     .then(resp => resp.json())
     .then(resp => {
       pokeArray = resp.pokemon;
+      ulResults.innerHTML = '';
       TypeSearch();
     });
 }

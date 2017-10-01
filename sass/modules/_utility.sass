@@ -1,0 +1,28 @@
+@mixin linear-gradient($color-starts, $color-stops)
+  background: nth(nth($color-stops,1), 1)
+  background: -webkit-linear-gradient($color-starts, $color-stops)
+  background: linear-gradient($color-starts, $color-stops)
+
+%background-format
+  background-position: center
+  background-size: cover
+  background-repeat: no-repeat
+
+%center-object
+    margin-left: auto
+    margin-right: auto
+
+%clear-fix
+  display: block
+  content: ''
+  clear: both
+
+%pokemon-type
+    padding: 0.4rem
+    width: 4rem
+    border-radius: 0.2rem
+    font-family: sans-serif
+    font-size: 0.7rem
+    text-transform: uppercase
+    text-shadow: 1px 1px 3px #000
+    box-shadow: 1px 1px 3px #000

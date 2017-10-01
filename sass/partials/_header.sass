@@ -1,0 +1,94 @@
+#nav-header
+  @extend %background-format, %center-object
+  background-image: url('https://www.zone-actu.com/wp-content/uploads/f505f5040274b97cd5114f9ff3ab8b99.jpg')
+  margin-bottom: 0
+  max-width: $container-width
+
+  nav
+    @include linear-gradient(rgba(0,0,0,1) 70%, rgba(0,0,0,0))
+    padding: $section-padding
+
+  nav::after
+    @extend %clear-fix
+
+  h1
+    @extend %background-format
+    display: table
+    float: left
+    margin: 0.75rem
+    
+    a  
+      display: table-cell
+      vertical-align: middle
+      text-decoration: none
+
+  h1::before
+    @extend %background-format
+    background-size: contain
+    background-image: url('/assets/pokemon-search-logo.png')
+    content: ""
+    float: left
+    height: 3rem
+    width: 4rem
+
+  ul
+    display: block
+    float: right
+    
+  li
+    float: left
+    margin: 0.75rem
+    font-size: 1.2rem
+
+  &::after
+    @extend %clear-fix  
+
+/* Search Section */
+
+#search-section
+  @extend %center-object
+  display: table
+  background: none
+  padding: $section-padding
+  height: 12.5rem
+
+  form
+    display: table-cell
+    vertical-align: middle
+    max-width: 400px
+
+  form::after
+    @extend %clear-fix
+
+  label
+    display: inline-block
+    background-color: $primary-color
+    padding: 0.5rem
+
+    span
+      font-size: 0.75rem
+
+  input
+    display: block
+    float: left
+    padding: 0.5rem
+    width: 85%
+    height: 3rem
+    font-size: 1.5rem
+    border: none
+    z-index: 10
+
+  button
+    float: right
+    background: url('/assets/search.png'), white
+    padding: 0
+    width: 15%
+    height: 3rem
+    background-size: 60%
+    background-repeat: no-repeat
+    background-position: center
+    border: none
+    cursor: pointer
+
+  &::after
+    @extend %clear-fix
