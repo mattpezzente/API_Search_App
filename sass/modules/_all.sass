@@ -12,6 +12,8 @@ $text-color: #eee
 $header-font: 'Crete Round', serif;
 $content-font: 'ABeeZee', sans-serif
 
+$image-loading: url('/img/load.gif')
+
 h1
   font-size: $header-base-font-size
 
@@ -41,7 +43,7 @@ p, h1, h2, h3, h4, a, label
   color: $text-color
 
 body
-  background: url('/assets/dark-background.jpg')
+  background: url('/img/dark-background.jpg')
   background-attachment: fixed
   background-position: left top
   background-size: 300%
@@ -52,3 +54,9 @@ section
   margin-bottom: $section-margin
   padding: $section-padding
   max-width: $container-width
+
+.loading
+  @extend %center-object
+  display: block
+  width: 5rem
+  height: 5rem
