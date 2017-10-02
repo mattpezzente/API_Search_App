@@ -1,6 +1,7 @@
 $primary-color: #111
 $secondary-color: #333
 $accent-color: #c12410
+$error-color: #ba1604
 
 $section-margin: 2rem
 $section-padding: 1rem
@@ -40,8 +41,9 @@ p, h1, h2, h3, h4, a, label
   color: $text-color
 
 body
-  @extend %background-format 
   background: url('/assets/dark-background.jpg')
+  background-attachment: fixed
+  background-position: left top
   background-size: 300%
 
 section
