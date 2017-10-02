@@ -4,8 +4,6 @@ The **_Pokesearch_** app is a single-page web application that allows the user t
 ### Demo Link
 [Pokemon Search App Demo](http://mattpezzente.com/projects/pokesearch/index.html)
 
-
-<<<<<<< HEAD
 ### Notes - 10/01/2017
 * After entering the Pokemon type to search for, be sure to click the search button once.
 * Wait 8 - 12 seconds for the search results to show.
