@@ -3,85 +3,76 @@ const api = 'http://pokeapi.co/api/v2/';
 var limit = 12;
 var h2Results;
 var ulResults;
-var btnSearch;
 var frmSearch;
 var txtSearch;
-var pokeArray;
-var typeArray;
 var cachedPokeArray;
 var cachedTypeArray;
-var inputValue;
-var valid;
 
 (() => {
+  let btnSearch;
+
   h2Results = document.querySelector('#search-results h2');
   ulResults = document.querySelector('#search-results ul');
   txtSearch = document.querySelector('.txt-search');
   frmSearch = document.querySelector('#search-section form');
   btnSearch = document.querySelector('.btn-search');
 
-  frmSearch.addEventListener('submit', FormStop);
-  btnSearch.addEventListener('click', PokeSearch);
+  frmSearch.addEventListener('submit', stopForm);
+  btnSearch.addEventListener('click', searchPoke);
 
   fetch('json/pokedex.json')
   .then(resp => resp.json())
-  .then(resp => cachedPokeArray = resp)
+  .then(resp => {
+    cachedPokeArray = resp
+    fetch('json/types.json')
+      .then(resp => resp.json())
+      .then(resp => {
+        cachedTypeArray = resp
+        cacheDisplay();
+      })
+      .catch(error => {
+        console.log('error loading local types database, ' + error.message);
+      });
+  })
   .catch(error => {
     console.log('error loading local types database, ' + error.message);
   });
 
-  fetch('json/types.json')
-  .then(resp => resp.json())
-  .then(resp => cachedTypeArray = resp)
-  .catch(error => {
-    console.log('error loading local types database, ' + error.message);
-  });
 })();
 
 /* Start External API Functions */
 
-function PokeSearch(e) {
-  inputValue = txtSearch.value;
-  
-  if (ValidateType(inputValue)) {
-    console.log('yup');
-    fetch(cors+api+'type/'+inputValue)
-      .then(resp => resp.json())
-      .then(resp => {
-        pokeArray = resp.pokemon;
-        TypeSearch();
-      })
-      .catch(error => {
-        console.log('error loading Pokemon database, ' + error.message);
-        DisplayCachedPokemon();
-      });
+function searchPoke(e) {
+  cacheResults(txtSearch.value);
+  if (validateType(txtSearch.value)) {
+  fetch(cors+api+'type/'+txtSearch.value)
+    .then(resp => resp.json())
+    .then(resp => {
+      console.log(resp.length); 
+      searchType(resp);
+    })
+    .catch(error => {
+      console.log('error loading Pokemon database, ' + error.message);
+      displayStored();
+    });
   }
 }
 
-function TypeSearch() {
-  typeArray = [];
-
+function searchType(pokeArray) {
   for (let i = 0; i < limit; i++) {
-    fetch(cors+pokeArray[i].pokemon.url)
+    fetch(cors+pokeArray.pokemon[i].pokemon.url)
       .then(resp => resp.json())
-      .then(resp => {
-        typeArray.push(resp);
-      })
-     .then(() => {
-        if (typeArray.length >= limit) {
-          DisplayPokemon();
-        }
-      })
+      .then(resp => console.log(resp), displayFetch(resp, pokeArray))
       .catch(error => {
         console.log('error loading types database, ' + error.message);
-        DisplayCachedPokemon();
+        displayStored();
       });
   }
 }
 
-function DisplayPokemon() {
+function displayFetch(typeArray, pokeArray) {
   ulResults.innerHTML = '';
-  h2Results.innerHTML = 'Search Results For: <span class="type type-' + inputValue + '">' + inputValue + '</span>';
+  h2Results.innerHTML = 'Search Results For: <span class="type type-' + txtSearch.value + '">' + txtSearch.value + '</span>';
 
   for (let i = 0; i < limit; i++) {
     temp = '<li>';
@@ -99,73 +90,82 @@ function DisplayPokemon() {
 
     ulResults.insertAdjacentHTML('beforeend', temp);
   }
-  RemoveLoading();
+  removeLanding();
 }
 
-/* End External API Functions */
+function cacheResults(cache) {
+  window.localStorage.setItem("poke_results", cache);
+}
 
-/* Start Cached API Functions */
+function cacheDisplay() {
+  if (window.localStorage.poke_results) {
+    txtSearch.value = window.localStorage.poke_results;
+    displayStored();
+  }
+}
 
-function DisplayCachedPokemon() {
+function displayStored() {
   let tempHTML
   let count = 0;
 
   ulResults.innerHTML = '';
-  h2Results.innerHTML = 'Search Results For: <span class="type type-' + inputValue + '">' + inputValue + '</span>';
+  h2Results.innerHTML = 'Search Results For: <span class="type type-' + txtSearch.value + '">' + txtSearch.value + '</span>';
 
   for (let i = 0; i < cachedPokeArray.length; i++) {
-    if (cachedPokeArray[i].type[0].includes(FindCName(inputValue))) {
+    if (cachedPokeArray[i].type[0].includes(findCName(txtSearch.value))) {
       tempHTML = '<li>';
-      tempHTML += '<img src="http://www.pokestadium.com/sprites/xy/' + FormatPokeName(cachedPokeArray[i].ename.toLowerCase()) + '.gif" alt="">';
+      tempHTML += '<img src="http://www.pokestadium.com/sprites/xy/' + formatPokeName(cachedPokeArray[i].ename.toLowerCase()) + '.gif" alt="">';
       tempHTML += '<h3>' + cachedPokeArray[i].ename.capsFirstLetter() + '</h3>';
-      tempHTML += '<p class="type type-' + inputValue.toLowerCase() + '">' + inputValue.toLowerCase() + '</p>';
+      tempHTML += '<p class="type type-' + txtSearch.value.toLowerCase() + '">' + txtSearch.value.toLowerCase() + '</p>';
       if (cachedPokeArray[i].type.length > 1) {
-        tempHTML += '<p class="type type-' + FindEName(cachedPokeArray[i].type[1]) + '">' + FindEName(cachedPokeArray[i].type[1]) + '</p>';
+        tempHTML += '<p class="type type-' + findEName(cachedPokeArray[i].type[1]) + '">' + findEName(cachedPokeArray[i].type[1]) + '</p>';
       }
       tempHTML += '</li>';
       ulResults.insertAdjacentHTML('beforeend', tempHTML);
       count++;
     }
-    else if (cachedPokeArray[i].type.length > 1 && cachedPokeArray[i].type[1].includes(FindCName(inputValue))) {
+    else if (cachedPokeArray[i].type.length > 1 && cachedPokeArray[i].type[1].includes(findCName(txtSearch.value))) {
       tempHTML = '<li>';
-      tempHTML += '<img src="http://www.pokestadium.com/sprites/xy/' + FormatPokeName(cachedPokeArray[i].ename.toLowerCase()) + '.gif" alt="">';
+      tempHTML += '<img src="http://www.pokestadium.com/sprites/xy/' + formatPokeName(cachedPokeArray[i].ename.toLowerCase()) + '.gif" alt="">';
       tempHTML += '<h3>' + cachedPokeArray[i].ename.capsFirstLetter() + '</h3>';
-      tempHTML += '<p class="type type-' + inputValue.toLowerCase() + '">' + inputValue.toLowerCase() + '</p>';
+      tempHTML += '<p class="type type-' + txtSearch.value.toLowerCase() + '">' + txtSearch.value.toLowerCase() + '</p>';
       if (cachedPokeArray[i].type.length > 1) {
-        tempHTML += '<p class="type type-' + FindEName(cachedPokeArray[i].type[0]) + '">' + FindEName(cachedPokeArray[i].type[0]) + '</p>';
+        tempHTML += '<p class="type type-' + findEName(cachedPokeArray[i].type[0]) + '">' + findEName(cachedPokeArray[i].type[0]) + '</p>';
       }
       tempHTML += '</li>';
       ulResults.insertAdjacentHTML('beforeend', tempHTML);
       count++;
     }
-
-    if (i >= limit) {
+    if (count === limit) {
       break;
     }
 
   }
+
   if (count % limit > 0) {
     tempHTML = '<li style="background:none">';
     tempHTML += '</li>';
     ulResults.insertAdjacentHTML('beforeend', tempHTML);
   }
-  RemoveLoading();
+
+  removeLanding();
+
 }
 
-/* End Cached API Functions */
+/* Utility Functions */
 
-/* Start Utility Functions */
-
-function FormStop(e) {
+function stopForm(e) {
   e.preventDefault();
 }
 
-function ValidateType(value) {
+function validateType(value) {
+  let valid
+
   if (frmSearch.querySelector('.search-error') !== null) {
     frmSearch.querySelector('.search-error').remove();
   }
   if (document.querySelector('.loading') === null) {
-    h2Results.insertAdjacentHTML('afterend', '<img class="loading" src="/assets/load.gif">');
+    h2Results.insertAdjacentHTML('afterend', '<img class="loading" src="/img/load.gif">');
   }
   for (let i = 0; i < cachedTypeArray.length; i++) {
     if (value.toLowerCase() === cachedTypeArray[i].ename.toLowerCase()) {
@@ -182,19 +182,19 @@ function ValidateType(value) {
   if(valid === false && frmSearch.querySelector('.search-error') === null) {
     errorHTML = '<label class="search-error">error, type not found</label>';
     frmSearch.insertAdjacentHTML('beforeend', errorHTML);
-    RemoveLoading();
+    removeLanding();
   }
 
   return valid;
 }
 
-function RemoveLoading() {
+function removeLanding() {
   if (document.querySelector('.loading')) {
     document.querySelector('.loading').remove();
   }
 }
 
-function FormatPokeName(pokeName) {
+function formatPokeName(pokeName) {
   if (pokeName.includes('\'')) {
     pokeName = pokeName.replace('\'', '');
   }
@@ -208,7 +208,7 @@ function FormatPokeName(pokeName) {
   return pokeName;
 }
 
-function FindEName(cname) {
+function findEName(cname) {
   for (let i = 0; i < cachedTypeArray.length; i++) {
     if(cname.toLowerCase() === cachedTypeArray[i].cname){
       return cachedTypeArray[i].ename.toLowerCase();
@@ -216,7 +216,7 @@ function FindEName(cname) {
   }
 }
 
-function FindCName(ename) {
+function findCName(ename) {
   for (let i = 0; i < cachedTypeArray.length; i++) {
     if(ename.toLowerCase() === cachedTypeArray[i].ename.toLowerCase()){
       return cachedTypeArray[i].cname;
@@ -228,6 +228,5 @@ String.prototype.capsFirstLetter = function() {
   return this.charAt(0).toUpperCase() + this.slice(1).toLowerCase();
 };
 
-/* End Utility Functions */
 
 

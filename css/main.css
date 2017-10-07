@@ -34,39 +34,15 @@ table {
 * {
   box-sizing: border-box; }
 
-h1 {
-  font-size: 1.75rem; }
-
-h2 {
-  font-size: 1.25rem; }
-
-h3 {
-  font-size: 1rem; }
-
-h4 {
-  font-size: 0.5rem; }
-
-h1,
-h2,
-h3,
-h4,
-a,
-label,
-input {
-  font-family: "Crete Round", serif;
-  text-decoration: none; }
-
-p {
-  font-family: "ABeeZee", sans-serif; }
-
-p, h1, h2, h3, h4, a, label {
-  color: #eee; }
-
 body {
   background: url("/img/dark-background.jpg");
   background-attachment: fixed;
   background-position: left top;
-  background-size: 300%; }
+  background-size: 300%;
+  padding: 1rem; }
+  @media (min-width: 400px) {
+    body {
+      padding: 0 1rem; } }
 
 section {
   background-color: #333;
@@ -79,91 +55,213 @@ section {
   width: 5rem;
   height: 5rem; }
 
-#nav-header, #nav-header h1, #nav-header h1::before {
+a, h1 {
+  color: #eee;
+  font-family: "Crete Round", serif;
+  text-decoration: none; }
+
+p, h2, h3, label {
+  color: #eee;
+  font-family: "ABeeZee", sans-serif; }
+
+h1 {
+  font-size: 1.5rem; }
+  @media (min-width: 400px) {
+    h1 {
+      font-size: 2rem; } }
+  @media (min-width: 768px) {
+    h1 {
+      font-size: 2.25rem; } }
+
+h2, a {
+  font-size: 1rem; }
+  @media (min-width: 400px) {
+    h2, a {
+      font-size: 1.25rem; } }
+  @media (min-width: 768px) {
+    h2, a {
+      font-size: 1.5rem; } }
+
+h3 {
+  font-size: 0.75rem; }
+  @media (min-width: 400px) {
+    h3 {
+      font-size: 1rem; } }
+  @media (min-width: 768px) {
+    h3 {
+      font-size: 1.25rem; } }
+
+p, label {
+  font-size: 0.825rem; }
+  @media (min-width: 400px) {
+    p, label {
+      font-size: 1.075rem; } }
+  @media (min-width: 768px) {
+    p, label {
+      font-size: 1.325rem; } }
+
+label > span {
+  font-size: 0.575rem; }
+  @media (min-width: 400px) {
+    label > span {
+      font-size: 0.7rem; } }
+  @media (min-width: 768px) {
+    label > span {
+      font-size: 0.825rem; } }
+
+input {
+  font-size: 0.825rem; }
+  @media (min-width: 400px) {
+    input {
+      font-size: 1.075rem; } }
+  @media (min-width: 768px) {
+    input {
+      font-size: 1.325rem; } }
+
+.type {
+  font-family: "ABeeZee", sans-serif;
+  font-size: 0.325rem; }
+  @media (min-width: 400px) {
+    .type {
+      font-size: 0.575rem; } }
+  @media (min-width: 768px) {
+    .type {
+      font-size: 0.825rem; } }
+
+.nav-main, .nav-main a, .nav-main .links-wrapper, .nav-main-mobile a {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-between; }
+
+.nav-main > a::before, .nav-main-mobile > a::before, .btn-hamburger {
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat; }
 
-section, .loading, #nav-header, #search-section, footer {
+section, .loading, #header-nav, .btn-hamburger, #search-section, footer {
   margin-left: auto;
   margin-right: auto; }
 
-#nav-header nav::after, #nav-header::after, #search-section form::after, #search-section::after {
-  display: block;
-  content: '';
-  clear: both; }
-
-#nav-header {
-  background-image: url("https://www.zone-actu.com/wp-content/uploads/f505f5040274b97cd5114f9ff3ab8b99.jpg");
+#header-nav {
+  background: center/cover no-repeat;
+  background-image: url("/img/header-image.jpg");
   margin-bottom: 0;
   max-width: 1000px; }
-  #nav-header nav {
-    background: transparent;
-    background: -webkit-linear-gradient(black 70%, transparent);
-    background: linear-gradient(black 70%, transparent);
-    padding: 1rem; }
-  #nav-header h1 {
-    display: table;
-    float: left;
-    margin: 0.75rem; }
-    #nav-header h1 a {
-      display: table-cell;
-      vertical-align: middle;
-      text-decoration: none; }
-  #nav-header h1::before {
-    background-size: contain;
+  @media (min-width: 400px) {
+    #header-nav {
+      margin-bottom: 2rem; } }
+
+.nav-main {
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(rgba(0, 0, 0, 0.5) 90%, transparent);
+  padding: 1rem;
+  width: 100%; }
+  .nav-main a {
+    align-items: center; }
+    .nav-main a h1 {
+      text-shadow: 1px 1px 5px black; }
+  .nav-main > a::before {
+    display: inline-block;
     background-image: url("/img/pokemon-search-logo.png");
+    background-size: contain;
     content: "";
-    float: left;
     height: 3rem;
     width: 4rem; }
-  #nav-header ul {
-    display: block;
-    float: right; }
-  #nav-header li {
-    float: left;
-    margin: 0.75rem;
-    font-size: 1.2rem; }
+  .nav-main .links-wrapper {
+    text-align: center;
+    align-items: center;
+    max-width: 100%; }
+    .nav-main .links-wrapper li {
+      margin: 0 1rem; }
 
-/* Search Section */
+.nav-main-mobile {
+  background: linear-gradient(rgba(0, 0, 0, 0.5) 95%, transparent);
+  padding: 1rem; }
+  .nav-main-mobile a {
+    justify-content: center;
+    align-items: center; }
+    .nav-main-mobile a h1 {
+      text-shadow: 1px 1px 5px black; }
+  .nav-main-mobile > a::before {
+    display: inline-block;
+    background-image: url("/img/pokemon-search-logo.png");
+    background-size: contain;
+    content: "";
+    height: 3rem;
+    width: 4rem; }
+  .nav-main-mobile .links-wrapper-mobile {
+    padding: .5rem 0; }
+    .nav-main-mobile .links-wrapper-mobile li {
+      margin-bottom: 1.25rem;
+      width: 100%; }
+
+.btn-hamburger {
+  background-color: transparent;
+  background: url("../../img/hamburger.png") no-repeat center/75%;
+  padding: 1rem;
+  border: none;
+  cursor: pointer; }
+  @media (min-width: 400px) {
+    .btn-hamburger {
+      padding: 1.5rem; } }
+
 #search-section {
   display: table;
-  background: none;
-  padding: 1rem;
-  height: 12.5rem; }
+  background: transparent;
+  max-width: 400px;
+  padding: 1rem; }
+  @media (min-width: 400px) {
+    #search-section {
+      margin-bottom: 1rem; } }
+  @media (min-width: 768px) {
+    #search-section {
+      margin-bottom: 2rem; } }
   #search-section form {
     display: table-cell;
-    vertical-align: middle;
-    max-width: 400px; }
+    vertical-align: middle; }
   #search-section label {
-    display: inline-block;
+    display: block;
     background-color: #111;
-    padding: 0.5rem; }
+    padding: .5rem 1rem;
+    text-align: center; }
     #search-section label span {
-      font-size: 0.75rem; }
+      display: block;
+      padding: .1rem 0;
+      text-align: center; }
   #search-section input {
     display: block;
     float: left;
-    padding: 0.5rem;
+    padding: .25rem .5rem;
     width: 85%;
-    height: 3rem;
-    font-size: 1.5rem;
-    border: none;
-    z-index: 10; }
+    height: 2.5rem;
+    border: none; }
+    @media (min-width: 400px) {
+      #search-section input {
+        height: 2.75rem; } }
+    @media (min-width: 768px) {
+      #search-section input {
+        height: 3rem; } }
   #search-section button {
     float: right;
-    background: url("/img/search.png"), white;
+    background: no-repeat center/60% url("/img/search.png"), white;
     padding: 0;
     width: 15%;
-    height: 3rem;
-    background-size: 60%;
-    background-repeat: no-repeat;
-    background-position: center;
+    height: 2.5rem;
     border: none;
     cursor: pointer; }
+    @media (min-width: 400px) {
+      #search-section button {
+        height: 2.75rem; } }
+    @media (min-width: 768px) {
+      #search-section button {
+        height: 3rem; } }
+  #search-section button:hover {
+    background-image: url("/img/search-hover.png"); }
   #search-section .search-error {
-    background-color: #ba1604;
-    font-size: 0.75rem; }
+    display: inline-block;
+    background-color: #ba1604; }
 
 #search-results h2 {
   margin-bottom: 1rem; }
@@ -180,7 +278,13 @@ section, .loading, #nav-header, #search-section, footer {
   text-align: center;
   margin-bottom: 2rem;
   padding: 1rem;
-  width: calc(100%/3 - 2rem); }
+  width: 100%; }
+  @media (min-width: 400px) {
+    #search-results li {
+      width: calc(100%/2 - 1rem); } }
+  @media (min-width: 768px) {
+    #search-results li {
+      width: calc(100%/3 - 2rem); } }
 
 #search-results img {
   max-width: 100%; }
@@ -193,18 +297,17 @@ footer {
   text-align: center;
   height: 5rem;
   max-width: 1000px; }
-  footer p {
+  footer h3 {
     display: table-cell;
     vertical-align: middle; }
 
 .type {
   display: inline-block;
   margin: 0 0.5rem;
-  padding: 0.4rem;
-  min-width: 4rem;
+  margin-bottom: 0.25rem;
+  padding: 0.4rem 0.75rem;
   border-radius: 0.2rem;
-  font-family: sans-serif;
-  font-size: 0.7rem;
+  vertical-align: middle;
   text-align: center;
   text-transform: uppercase;
   text-shadow: 1px 1px 3px #000;

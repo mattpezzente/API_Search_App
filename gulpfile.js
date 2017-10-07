@@ -17,8 +17,7 @@ gulp.task('reload', done => {
 
 gulp.task('watch', () => {
   gulp.watch('./*.html', ['reload']);
-  gulp.watch('./*.js', ['reload']);
-  gulp.watch('./js/**', ['reload']);
+  gulp.watch('./js/**/*.js', ['reload']);
 });
 
 gulp.task('css', () => {

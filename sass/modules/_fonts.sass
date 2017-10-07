@@ -1,0 +1,71 @@
+$header-base-font-size: 1.5rem
+$content-base-font-size: .825rem
+$primary-font: 'Crete Round', serif 
+$secondary-font: 'ABeeZee', sans-serif
+$text-color-primary: #eee
+
+a, h1
+	color: $text-color-primary
+	font-family: $primary-font
+	text-decoration: none
+
+p, h2, h3, label
+	color: $text-color-primary
+	font-family: $secondary-font
+
+h1
+  font-size: $header-base-font-size
+  @media (min-width: $response-tablet)
+  	font-size: $header-base-font-size + .5rem
+
+  @media (min-width: $response-desktop)
+  	font-size: $header-base-font-size + .75rem
+
+h2, a
+  font-size: $header-base-font-size - .5rem
+  @media (min-width: $response-tablet)
+  	font-size: $header-base-font-size - .25rem
+
+  @media (min-width: $response-desktop)
+  	font-size: $header-base-font-size
+
+h3
+  font-size: $header-base-font-size - .75rem
+  @media (min-width: $response-tablet)
+  	font-size: $header-base-font-size - .5rem
+
+  @media (min-width: $response-desktop)
+  	font-size: $header-base-font-size - .25rem
+
+p, label
+  font-size: $content-base-font-size
+  @media (min-width: $response-tablet)
+  	font-size: $content-base-font-size + .25rem
+
+  @media (min-width: $response-desktop)
+  	font-size: $content-base-font-size + .5rem
+
+label 
+	>span
+		font-size: $content-base-font-size - .25rem
+		@media (min-width: $response-tablet)
+			font-size: $content-base-font-size - .125rem
+		@media (min-width: $response-desktop)
+			font-size: $content-base-font-size
+
+input
+  font-size: $content-base-font-size
+  @media (min-width: $response-tablet)
+  	font-size: $content-base-font-size + .25
+
+  @media (min-width: $response-desktop)
+  	font-size: $content-base-font-size + .5rem
+	
+.type
+	font-family: $secondary-font
+	font-size: $content-base-font-size - .5rem
+	@media (min-width: $response-tablet)
+		font-size: $content-base-font-size - .25rem
+	@media (min-width: $response-desktop)
+		font-size: $content-base-font-size
+

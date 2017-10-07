@@ -1,98 +1,82 @@
-#nav-header
-  @extend %background-format, %center-object
-  background-image: url('https://www.zone-actu.com/wp-content/uploads/f505f5040274b97cd5114f9ff3ab8b99.jpg')
+#header-nav
+  @extend %center-object
+  background: center/cover no-repeat
+  background-image: url('/img/header-image.jpg')
   margin-bottom: 0
   max-width: $container-width
+  @media (min-width: $response-tablet)
+    margin-bottom: $section-margin
 
-  nav
-    @include linear-gradient(rgba(0,0,0,1) 70%, rgba(0,0,0,0))
-    padding: $section-padding
+.nav-main
+  @extend %flex-box
+  align-items: center
+  justify-content: space-between
+  background: linear-gradient(rgba(0,0,0,0.5) 90%, rgba(0,0,0,0))
+  padding: $section-padding
+  width: 100% 
+  
+  a 
+    @extend %flex-box
+    align-items: center
 
-  nav::after
-    @extend %clear-fix
+    h1
+      text-shadow: 1px 1px 5px black
 
-  h1
+  > a::before
+      @extend %background-format
+      display: inline-block
+      background-image: url('/img/pokemon-search-logo.png')
+      background-size: contain
+      content: ""
+      height: 3rem
+      width: 4rem
+
+  .links-wrapper
+    @extend %flex-box
+    text-align: center
+    align-items: center
+    max-width: 100%
+
+    li
+      margin: 0 1rem
+
+
+.nav-main-mobile
+  background: linear-gradient(rgba(0,0,0,0.5) 95%, rgba(0,0,0,0))
+  padding: $section-padding
+
+  a 
+    @extend %flex-box
+    justify-content: center
+    align-items: center
+
+    h1
+      text-shadow: 1px 1px 5px black
+
+  > a::before
     @extend %background-format
-    display: table
-    float: left
-    margin: 0.75rem
-    
-    a  
-      display: table-cell
-      vertical-align: middle
-      text-decoration: none
-
-  h1::before
-    @extend %background-format
-    background-size: contain
+    display: inline-block
     background-image: url('/img/pokemon-search-logo.png')
+    background-size: contain
     content: ""
-    float: left
     height: 3rem
     width: 4rem
 
-  ul
-    display: block
-    float: right
-    
-  li
-    float: left
-    margin: 0.75rem
-    font-size: 1.2rem
+  .links-wrapper-mobile
+    padding: .5rem 0
 
-  &::after
-    @extend %clear-fix  
+    li
+      margin-bottom: 1.25rem
+      width: 100%
 
-/* Search Section */
+.btn-hamburger
+  @extend %background-format, %center-object
+  background-color: transparent
+  background: url('../../img/hamburger.png') no-repeat center/75%
+  padding: 1rem
+  border: none
+  cursor: pointer
+  @media (min-width: $response-tablet)
+    padding: 1.5rem
 
-#search-section
-  @extend %center-object
-  display: table
-  background: none
-  padding: $section-padding
-  height: 12.5rem
 
-  form
-    display: table-cell
-    vertical-align: middle
-    max-width: 400px
-
-  form::after
-    @extend %clear-fix
-
-  label
-    display: inline-block
-    background-color: $primary-color
-    padding: 0.5rem
-
-    span
-      font-size: 0.75rem
-
-  input
-    display: block
-    float: left
-    padding: 0.5rem
-    width: 85%
-    height: 3rem
-    font-size: 1.5rem
-    border: none
-    z-index: 10
-
-  button
-    float: right
-    background: url('/img/search.png'), white
-    padding: 0
-    width: 15%
-    height: 3rem
-    background-size: 60%
-    background-repeat: no-repeat
-    background-position: center
-    border: none
-    cursor: pointer
-
-  .search-error
-    background-color: $error-color;
-    font-size: $header-base-font-size - 1rem
-
-  &::after
-    @extend %clear-fix

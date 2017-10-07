@@ -1,0 +1,58 @@
+#search-section
+  @extend %center-object
+  display: table
+  background: transparent
+  max-width: 400px
+  padding: $section-padding
+  @media (min-width: $response-tablet)
+    margin-bottom: 1rem
+  @media (min-width: $response-desktop)
+    margin-bottom: 2rem
+
+  form
+    display: table-cell
+    vertical-align: middle
+
+  label
+    display: block
+    background-color: $primary-color
+    padding: .5rem 1rem
+    text-align: center
+
+    span
+      display: block
+      padding: .1rem 0
+      text-align: center
+
+  input
+    display: block
+    float: left
+    padding: .25rem .5rem
+    width: 85%
+    height: $search-bar-height
+    border: none
+    @media (min-width: $response-tablet)
+      height: $search-bar-height + .25rem
+    @media (min-width: $response-desktop)
+      height: $search-bar-height + .5rem
+
+  button
+    float: right
+    background: no-repeat center/60% url('/img/search.png'), white
+    padding: 0
+    width: 15%
+    height: $search-bar-height
+    border: none
+    cursor: pointer
+    @media (min-width: $response-tablet)
+      height: $search-bar-height + .25rem
+    @media (min-width: $response-desktop)
+      height: $search-bar-height + .5rem
+
+
+  button:hover
+    background-image: url('/img/search-hover.png')
+
+  .search-error
+    display: inline-block
+    background-color: $error-color;
