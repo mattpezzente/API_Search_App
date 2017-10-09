@@ -7,6 +7,7 @@ var frmSearch;
 var txtSearch;
 var cachedPokeArray;
 var cachedTypeArray;
+var tempHTML = '';
 
 (() => {
   let btnSearch;
@@ -48,8 +49,10 @@ function searchPoke(e) {
   fetch(cors+api+'type/'+txtSearch.value)
     .then(resp => resp.json())
     .then(resp => {
-      console.log(resp.length); 
-      searchType(resp);
+      console.log(resp);
+      for (let i = 0; i < limit; i++) {
+        searchType(resp, i)
+      }
     })
     .catch(error => {
       console.log('error loading Pokemon database, ' + error.message);
@@ -58,39 +61,36 @@ function searchPoke(e) {
   }
 }
 
-function searchType(pokeArray) {
-  for (let i = 0; i < limit; i++) {
-    fetch(cors+pokeArray.pokemon[i].pokemon.url)
-      .then(resp => resp.json())
-      .then(resp => console.log(resp), displayFetch(resp, pokeArray))
-      .catch(error => {
-        console.log('error loading types database, ' + error.message);
-        displayStored();
-      });
-  }
+function searchType(pokeArray, i) {
+  fetch(cors+pokeArray.pokemon[i].pokemon.url)
+    .then(resp => resp.json())
+    .then(resp => { 
+      console.log(resp);
+      displayFetch(resp, i);
+    })
+    .catch(error => {
+      console.log('error loading Types database, ' + error.message);
+      displayStored();
+    });
 }
 
-function displayFetch(typeArray, pokeArray) {
-  ulResults.innerHTML = '';
+function displayFetch(typeArray, count) {
   h2Results.innerHTML = 'Search Results For: <span class="type type-' + txtSearch.value + '">' + txtSearch.value + '</span>';
-
-  for (let i = 0; i < limit; i++) {
-    temp = '<li>';
-    temp += '<img src="http://www.pokestadium.com/sprites/xy/' + pokeArray[i].pokemon.name + '.gif" alt="">';
-    temp += '<h3>' + pokeArray[i].pokemon.name.capsFirstLetter() + '</h3>';
-    for (let j = 0; j < typeArray.length; j++) {
-      if (typeArray[j].name == pokeArray[i].pokemon.name) {
-          temp += '<p class="type type-' + typeArray[j].types[0].type.name + '">' + typeArray[j].types[0].type.name + '</p>';
-        if (typeArray[j].types[1]) {
-          temp += '<p class="type type-' + typeArray[j].types[1].type.name + '">' + typeArray[j].types[1].type.name + '</p>';
-        }
-      }
-    }
-    temp += '</li>';
-
-    ulResults.insertAdjacentHTML('beforeend', temp);
+  tempHTML = '<li>';
+  tempHTML += '<img src="http://www.pokestadium.com/sprites/xy/' + typeArray.name + '.gif" alt="">';
+  tempHTML += '<h3>' + typeArray.name.capsFirstLetter() + '</h3>';
+  tempHTML += '<p class="type type-' + typeArray.types[0].type.name + '">' + typeArray.types[0].type.name + '</p>';
+  if (typeArray.types[1]) {
+    tempHTML += '<p class="type type-' + typeArray.types[1].type.name + '">' + typeArray.types[1].type.name + '</p>';
   }
-  removeLanding();
+  tempHTML += '</li>';
+
+  ulResults.insertAdjacentHTML('beforeend', tempHTML);
+  
+  console.log(count + ' AND ' + limit);
+  if (count == limit - 1) {
+    removeLanding();
+  }
 }
 
 function cacheResults(cache) {
@@ -105,12 +105,8 @@ function cacheDisplay() {
 }
 
 function displayStored() {
-  let tempHTML
   let count = 0;
-
-  ulResults.innerHTML = '';
   h2Results.innerHTML = 'Search Results For: <span class="type type-' + txtSearch.value + '">' + txtSearch.value + '</span>';
-
   for (let i = 0; i < cachedPokeArray.length; i++) {
     if (cachedPokeArray[i].type[0].includes(findCName(txtSearch.value))) {
       tempHTML = '<li>';
@@ -137,6 +133,7 @@ function displayStored() {
       count++;
     }
     if (count === limit) {
+      tempHTML = '';
       break;
     }
 
@@ -172,6 +169,7 @@ function validateType(value) {
       if (frmSearch.querySelector('.search-error') !== null) {
         frmSearch.querySelector('.search-error').remove();
       }
+      ulResults.innerHTML = '';
       valid = true;
       break;
     }

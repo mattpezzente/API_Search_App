@@ -15,57 +15,65 @@ p, h2, h3, label
 
 h1
   font-size: $header-base-font-size
-  @media (min-width: $response-tablet)
+  @include responsive(tablet)
   	font-size: $header-base-font-size + .5rem
 
-  @media (min-width: $response-desktop)
+  @include responsive(desktop)
   	font-size: $header-base-font-size + .75rem
 
 h2, a
   font-size: $header-base-font-size - .5rem
-  @media (min-width: $response-tablet)
+  @include responsive(tablet)
   	font-size: $header-base-font-size - .25rem
 
-  @media (min-width: $response-desktop)
+  @include responsive(desktop)
   	font-size: $header-base-font-size
 
 h3
   font-size: $header-base-font-size - .75rem
-  @media (min-width: $response-tablet)
+  @include responsive(tablet)
   	font-size: $header-base-font-size - .5rem
 
-  @media (min-width: $response-desktop)
+  @include responsive(desktop)
   	font-size: $header-base-font-size - .25rem
 
 p, label
   font-size: $content-base-font-size
-  @media (min-width: $response-tablet)
+  @include responsive(tablet)
   	font-size: $content-base-font-size + .25rem
 
-  @media (min-width: $response-desktop)
+  @include responsive(desktop)
   	font-size: $content-base-font-size + .5rem
 
 label 
 	>span
 		font-size: $content-base-font-size - .25rem
-		@media (min-width: $response-tablet)
+		@include responsive(tablet)
 			font-size: $content-base-font-size - .125rem
-		@media (min-width: $response-desktop)
+		@include responsive(desktop)
 			font-size: $content-base-font-size
 
 input
   font-size: $content-base-font-size
-  @media (min-width: $response-tablet)
+  @include responsive(tablet)
   	font-size: $content-base-font-size + .25
 
-  @media (min-width: $response-desktop)
+  @include responsive(desktop)
   	font-size: $content-base-font-size + .5rem
-	
+
+.search-error
+  font-size: $content-base-font-size - .375rem
+  @include responsive(tablet)
+    font-size: $content-base-font-size - .25rem
+
+  @include responsive(desktop)
+    font-size: $content-base-font-size - .125rem
+
 .type
 	font-family: $secondary-font
 	font-size: $content-base-font-size - .5rem
-	@media (min-width: $response-tablet)
+	@include responsive(tablet)
 		font-size: $content-base-font-size - .25rem
-	@media (min-width: $response-desktop)
+	@include responsive(desktop)
 		font-size: $content-base-font-size
 

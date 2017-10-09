@@ -1,22 +1,22 @@
 #search-section
-  @extend %center-object
-  display: table
+  @extend %center-object, %flex-box
   background: transparent
   max-width: 400px
+  height: 15rem
   padding: $section-padding
-  @media (min-width: $response-tablet)
+  @include responsive(tablet)
     margin-bottom: 1rem
-  @media (min-width: $response-desktop)
+  @include responsive(desktop)
     margin-bottom: 2rem
 
   form
-    display: table-cell
-    vertical-align: middle
+    @extend %flex-box
 
   label
     display: block
     background-color: $primary-color
     padding: .5rem 1rem
+    width: 100%
     text-align: center
 
     span
@@ -31,9 +31,9 @@
     width: 85%
     height: $search-bar-height
     border: none
-    @media (min-width: $response-tablet)
+    @include responsive(tablet)
       height: $search-bar-height + .25rem
-    @media (min-width: $response-desktop)
+    @include responsive(desktop)
       height: $search-bar-height + .5rem
 
   button
@@ -44,15 +44,15 @@
     height: $search-bar-height
     border: none
     cursor: pointer
-    @media (min-width: $response-tablet)
+    @include responsive(tablet)
       height: $search-bar-height + .25rem
-    @media (min-width: $response-desktop)
+    @include responsive(desktop)
       height: $search-bar-height + .5rem
-
 
   button:hover
     background-image: url('/img/search-hover.png')
 
   .search-error
     display: inline-block
-    background-color: $error-color;
+    background-color: $error-color
+    width: initial

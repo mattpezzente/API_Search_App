@@ -12,7 +12,6 @@ var btnHamburger;
 
 	window.addEventListener('resize', throttleResize);
 	btnHamburger.addEventListener('click', openMenu);
-	console.log('hello');
 })();
 
 function openMenu(e) {

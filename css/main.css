@@ -32,7 +32,8 @@ table {
   border-spacing: 0; }
 
 * {
-  box-sizing: border-box; }
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box; }
 
 body {
   background: url("/img/dark-background.jpg");
@@ -54,6 +55,32 @@ section {
   display: block;
   width: 5rem;
   height: 5rem; }
+
+.nav-main, .nav-main a, .nav-main .links-wrapper, .nav-main-mobile > a, #search-section, #search-section form, #search-results ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center; }
+
+.nav-main > a::before, .nav-main-mobile > a::before, .btn-hamburger {
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat; }
+
+section, .loading, #header-nav, .btn-hamburger, #search-section, footer {
+  margin-left: auto;
+  margin-right: auto; }
 
 a, h1 {
   color: #eee;
@@ -118,6 +145,15 @@ input {
     input {
       font-size: 1.325rem; } }
 
+.search-error {
+  font-size: 0.45rem; }
+  @media (min-width: 400px) {
+    .search-error {
+      font-size: 0.575rem; } }
+  @media (min-width: 768px) {
+    .search-error {
+      font-size: 0.7rem; } }
+
 .type {
   font-family: "ABeeZee", sans-serif;
   font-size: 0.325rem; }
@@ -127,21 +163,6 @@ input {
   @media (min-width: 768px) {
     .type {
       font-size: 0.825rem; } }
-
-.nav-main, .nav-main a, .nav-main .links-wrapper, .nav-main-mobile a {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  justify-content: space-between; }
-
-.nav-main > a::before, .nav-main-mobile > a::before, .btn-hamburger {
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat; }
-
-section, .loading, #header-nav, .btn-hamburger, #search-section, footer {
-  margin-left: auto;
-  margin-right: auto; }
 
 #header-nav {
   background: center/cover no-repeat;
@@ -153,13 +174,20 @@ section, .loading, #header-nav, .btn-hamburger, #search-section, footer {
       margin-bottom: 2rem; } }
 
 .nav-main {
-  align-items: center;
-  justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(90%, rgba(0, 0, 0, 0.5)), to(transparent));
   background: linear-gradient(rgba(0, 0, 0, 0.5) 90%, transparent);
   padding: 1rem;
   width: 100%; }
   .nav-main a {
-    align-items: center; }
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center; }
     .nav-main a h1 {
       text-shadow: 1px 1px 5px black; }
   .nav-main > a::before {
@@ -171,18 +199,25 @@ section, .loading, #header-nav, .btn-hamburger, #search-section, footer {
     width: 4rem; }
   .nav-main .links-wrapper {
     text-align: center;
-    align-items: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
     max-width: 100%; }
     .nav-main .links-wrapper li {
       margin: 0 1rem; }
 
 .nav-main-mobile {
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(95%, rgba(0, 0, 0, 0.5)), to(transparent));
   background: linear-gradient(rgba(0, 0, 0, 0.5) 95%, transparent);
   padding: 1rem; }
-  .nav-main-mobile a {
-    justify-content: center;
-    align-items: center; }
-    .nav-main-mobile a h1 {
+  .nav-main-mobile > a {
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center; }
+    .nav-main-mobile > a h1 {
       text-shadow: 1px 1px 5px black; }
   .nav-main-mobile > a::before {
     display: inline-block;
@@ -194,8 +229,8 @@ section, .loading, #header-nav, .btn-hamburger, #search-section, footer {
   .nav-main-mobile .links-wrapper-mobile {
     padding: .5rem 0; }
     .nav-main-mobile .links-wrapper-mobile li {
-      margin-bottom: 1.25rem;
-      width: 100%; }
+      text-align: center;
+      margin-bottom: 1.25rem; }
 
 .btn-hamburger {
   background-color: transparent;
@@ -208,9 +243,9 @@ section, .loading, #header-nav, .btn-hamburger, #search-section, footer {
       padding: 1.5rem; } }
 
 #search-section {
-  display: table;
   background: transparent;
   max-width: 400px;
+  height: 15rem;
   padding: 1rem; }
   @media (min-width: 400px) {
     #search-section {
@@ -218,13 +253,11 @@ section, .loading, #header-nav, .btn-hamburger, #search-section, footer {
   @media (min-width: 768px) {
     #search-section {
       margin-bottom: 2rem; } }
-  #search-section form {
-    display: table-cell;
-    vertical-align: middle; }
   #search-section label {
     display: block;
     background-color: #111;
     padding: .5rem 1rem;
+    width: 100%;
     text-align: center; }
     #search-section label span {
       display: block;
@@ -261,17 +294,11 @@ section, .loading, #header-nav, .btn-hamburger, #search-section, footer {
     background-image: url("/img/search-hover.png"); }
   #search-section .search-error {
     display: inline-block;
-    background-color: #ba1604; }
+    background-color: #ba1604;
+    width: initial; }
 
 #search-results h2 {
   margin-bottom: 1rem; }
-
-#search-results ul {
-  display: flex;
-  flex-flow: row;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  align-items: center; }
 
 #search-results li {
   background: #111;
@@ -292,15 +319,6 @@ section, .loading, #header-nav, .btn-hamburger, #search-section, footer {
 #search-results h3 {
   padding: 0.5rem; }
 
-footer {
-  display: table;
-  text-align: center;
-  height: 5rem;
-  max-width: 1000px; }
-  footer h3 {
-    display: table-cell;
-    vertical-align: middle; }
-
 .type {
   display: inline-block;
   margin: 0 0.5rem;
@@ -311,7 +329,8 @@ footer {
   text-align: center;
   text-transform: uppercase;
   text-shadow: 1px 1px 3px #000;
-  box-shadow: 1px 1px 3px #000; }
+  -webkit-box-shadow: 1px 1px 3px #000;
+          box-shadow: 1px 1px 3px #000; }
 
 .type-normal {
   background: #949562;
@@ -384,3 +403,12 @@ footer {
 .type-fairy {
   background: #da66dc;
   border: 1px solid #c925cb; }
+
+footer {
+  display: table;
+  text-align: center;
+  height: 5rem;
+  max-width: 1000px; }
+  footer h3 {
+    display: table-cell;
+    vertical-align: middle; }

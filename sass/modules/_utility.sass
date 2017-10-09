@@ -1,3 +1,11 @@
+@mixin responsive($size)
+  @if $size == tablet
+    @media (min-width: 400px) 
+      @content
+  @else if $size == desktop
+    @media (min-width: 768px) 
+      @content
+
 @mixin linear-gradient($color-starts, $color-stops)
   background: nth(nth($color-stops,1), 1)
   background: -webkit-linear-gradient($color-starts, $color-stops)
@@ -8,6 +16,7 @@
   flex-wrap: wrap
   flex-direction: row
   justify-content: space-between
+  align-items: center
 
 %background-format
   background-position: center
