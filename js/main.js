@@ -44,14 +44,13 @@ var tempHTML = '';
 /* Start External API Functions */
 
 function searchPoke(e) {
-  cacheResults(txtSearch.value);
   if (validateType(txtSearch.value)) {
   fetch(cors+api+'type/'+txtSearch.value)
     .then(resp => resp.json())
     .then(resp => {
       console.log(resp);
       for (let i = 0; i < limit; i++) {
-        searchType(resp, i)
+        searchType(resp, i);
       }
     })
     .catch(error => {
@@ -90,17 +89,20 @@ function displayFetch(typeArray, count) {
   console.log(count + ' AND ' + limit);
   if (count == limit - 1) {
     removeLanding();
+    cacheResults();
   }
 }
 
-function cacheResults(cache) {
-  window.localStorage.setItem("poke_results", cache);
+function cacheResults() {
+  let results = document.querySelector('#search-results');
+  window.localStorage.setItem("poke_results", results.innerHTML);
 }
 
 function cacheDisplay() {
+  let results = document.querySelector('#search-results');
   if (window.localStorage.poke_results) {
-    txtSearch.value = window.localStorage.poke_results;
-    displayStored();
+    results.innerHTML = window.localStorage.poke_results;
+    console.log('working');
   }
 }
 
@@ -136,17 +138,13 @@ function displayStored() {
       tempHTML = '';
       break;
     }
-
   }
-
   if (count % limit > 0) {
     tempHTML = '<li style="background:none">';
     tempHTML += '</li>';
     ulResults.insertAdjacentHTML('beforeend', tempHTML);
   }
-
   removeLanding();
-
 }
 
 /* Utility Functions */
@@ -157,7 +155,6 @@ function stopForm(e) {
 
 function validateType(value) {
   let valid
-
   if (frmSearch.querySelector('.search-error') !== null) {
     frmSearch.querySelector('.search-error').remove();
   }
@@ -182,7 +179,6 @@ function validateType(value) {
     frmSearch.insertAdjacentHTML('beforeend', errorHTML);
     removeLanding();
   }
-
   return valid;
 }
 
