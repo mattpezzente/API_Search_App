@@ -1,15 +1,10 @@
 # "Pokesearch" API_Search_App
-The **_Pokesearch_** app is a single-page web application that allows the user to input a Pokemon type, and return 12 Pokemon that match the inputted type.
+The **_Pokesearch_** app is a single-page web application that allows the user to input a Pokemon type, and return 12 Pokemon that match the inputted type. 
 
 ### Demo Link
 [Pokemon Search App Demo](http://mattpezzente.com/projects/pokesearch/index.html)
 
-### Notes - 10/01/2017
-* After entering the Pokemon type to search for, be sure to click the search button once.
-* Wait 8 - 12 seconds for the search results to show.
-* If content isn't loading, check the console for errors. Please message me directly if you experience this issue. [My Profile](https://github.com/salogost)
-
-## Types
+### Types
 The useable Pokemon types are listed below:
 * Normal
 * Fire
@@ -29,3 +24,19 @@ The useable Pokemon types are listed below:
 * Dark
 * Steel
 * Fairy
+
+## Installation
+### Repository
+To download this repository, enter the following git commands into a terminal: 
+```
+git clone https://github.com/salogost/API_Search_App.git
+```
+
+### NPM
+This repository comes with NPM developer dependencies, which is included in the package.json file. 
+
+To install these developer dependencies, enter the following NPM commands into a terminal:
+
+```
+npm install
+```
